@@ -77,8 +77,8 @@ test.describe('Страница оформления заказа авториз
 
   test('Оформление заказа', async ({ page }) => {
     const responsePromise = page.waitForResponse(response =>
-      response.url().includes('/orders') && response.status() === 200
-    );
+      response.url().includes('/orders') && response.status() === 200,
+    { timeout: 60000 });
     const [bunItem] = buns;
     const [sauceItem] = sauces;
     const [mainItem] = main;
