@@ -76,6 +76,7 @@ test.describe('Страница оформления заказа авториз
   });
 
   test('Оформление заказа', async ({ page }) => {
+    test.slow();
     const responsePromise = page.waitForResponse(response =>
       response.url().includes('/orders') && response.status() === 200,
     { timeout: 0 });
@@ -85,7 +86,6 @@ test.describe('Страница оформления заказа авториз
     await page.locator(`a[href="/ingredients/${bunItem._id}"] + button`).click();
     await page.locator(`a[href="/ingredients/${sauceItem._id}"] + button`).click();
     await page.locator(`a[href="/ingredients/${mainItem._id}"] + button`).click();
-    await page.waitForTimeout(500);
     await page.getByRole('button', { name: 'Оформить заказ' }).click();
     const response = await responsePromise;
     const res = await response.json();
