@@ -1,10 +1,10 @@
 #!/bin/bash
 
 echo "УСТАНОВКА ЗАВИСИМОСТЕЙ"
-npm i -g wait-port@1.0.4 2>/dev/null
-npm ci 2>/dev/null
-npm ci --prefix /tmp/tests-stellar-burger 2>/dev/null
-npx playwright install --with-deps 2>/dev/null
+npm i -g wait-port@1.0.4 > /dev/null
+npm ci > /dev/null
+npm ci --prefix /tmp/tests-stellar-burger > /dev/null
+npx playwright install --with-deps > /dev/null
 
 echo "ЗАПУСК ПРОЕКТА"
 # npm run build
