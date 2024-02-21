@@ -38,18 +38,6 @@ test.describe('Страница оформления заказа авториз
     expect(modalText).toMatch(/Углеводы/);
   });
 
-//   test('При прямом переходе по маршруту /ingredients/:id открывается страница с информацией об ингредиенте', async ({ page }) => {
-//     const ingredient = await page.locator('a[href^="/ingredients/"]').first();
-//     const href = await ingredient.getAttribute('href');
-//     await page.goto(`http://localhost:4000/${href}`);
-//     await page.waitForSelector('#modals img');
-//     const modalText = await page.locator('#modals').first().textContent();
-//     expect(modalText).toMatch(/Калории/);
-//     expect(modalText).toMatch(/Белки/);
-//     expect(modalText).toMatch(/Жиры/);
-//     expect(modalText).toMatch(/Углеводы/);
-//   });
-
   test('Ингредиенты добавляются в конструктор', async ({ page }) => {
     const [bunItem] = buns;
     const [sauceItem] = sauces;
