@@ -64,6 +64,7 @@ test.describe('Страница оформления заказа авториз
   });
 
   test('Оформление заказа', async ({ page }) => {
+    page.waitForTimeout(3000);
     const responsePromise = page.waitForResponse(response =>
       response.url().includes('/orders') && response.status() === 200
     );
