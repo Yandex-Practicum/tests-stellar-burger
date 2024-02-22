@@ -11,7 +11,8 @@ export default defineConfig({
     headless: true,
     screenshot: 'only-on-failure',
     locale: 'ru-RU',
-    trace: 'on-first-retry',
+    // trace: 'on-first-retry',
+    trace: 'retain-on-failure',
   },
   projects: [
     { name: 'setup', testMatch: /.*\.setup\.js/ },
