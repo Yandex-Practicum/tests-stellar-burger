@@ -64,10 +64,7 @@ test.describe('Страница оформления заказа авториз
   });
 
   test('Оформление заказа', async ({ page }) => {
-    function logRequest(interceptedRequest) {
-      console.log('A request was made:', interceptedRequest.url());
-    }
-    page.on('request', logRequest);
+    await page.waitForTimeout(3000);
     const responsePromise = page.waitForResponse(response =>
       response.url().includes('/orders') && response.status() === 200
     );
@@ -80,7 +77,6 @@ test.describe('Страница оформления заказа авториз
     await page.getByRole('button', { name: 'Оформить заказ' }).click();
     const response = await responsePromise;
     const res = await response.json();
-    page.removeListener('request', logRequest);
     await page.waitForSelector('#modals img');
     await expect(page.locator('#modals')).toContainText(String(res.order.number));
   });
