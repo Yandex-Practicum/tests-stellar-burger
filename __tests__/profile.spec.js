@@ -41,14 +41,12 @@ test.describe('Страница профиля', () => {
     await expect(page.getByRole('button', { name: 'Сохранить' })).toHaveCount(0);
   });
 
-  // test('Пользователь может изменить свои данные', async ({ page }) => {
-  //   const newName = faker.person.firstName();
-  //   await page.locator('input[name="name"]').fill(newName);
-  //   await page.getByRole('button', { name: 'Сохранить' }).click();
-  //   await page.waitForTimeout(5000); //без такой задержки в каноникле не работает
-  //   await page.goto('http://localhost:4000/profile');
-  //   await page.waitForTimeout(300);
-  //   expect(page.locator('input[name="name"]')).toHaveValue(newName);
-  // });
+  test('Пользователь может изменить свои данные', async ({ page }) => {
+    await page.waitForTimeout(3000);
+    const newName = faker.person.firstName();
+    await page.locator('input[name="name"]').fill(newName);
+    await page.getByRole('button', { name: 'Сохранить' }).click();
+    expect(page.locator('input[name="name"]')).toHaveValue(newName);
+  });
 });
 
