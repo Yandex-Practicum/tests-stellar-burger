@@ -64,7 +64,6 @@ test.describe('Страница оформления заказа авториз
   });
 
   test('Оформление заказа', async ({ page }) => {
-    page.waitForTimeout(3000);
     const responsePromise = page.waitForResponse(response =>
       response.url().includes('/orders') && response.status() === 200
     );
@@ -75,7 +74,13 @@ test.describe('Страница оформления заказа авториз
     await page.locator(`a[href="/ingredients/${sauceItem._id}"] + button`).click();
     await page.locator(`a[href="/ingredients/${mainItem._id}"] + button`).click();
     await page.getByRole('button', { name: 'Оформить заказ' }).click();
-    const response = await responsePromise;
+    let response;
+    try {
+      response = await responsePromise;
+    } catch (error) {
+      await page.getByRole('button', { name: 'Оформить заказ' }).click();
+      response = await responsePromise;
+    }
     const res = await response.json();
     await page.waitForSelector('#modals img');
     await expect(page.locator('#modals')).toContainText(String(res.order.number));
